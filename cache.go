@@ -11,6 +11,8 @@ type Cache interface {
 	Delete(key string) error
 	Reset() error // clear all entries
 	Len() int
+
+	// Capacity returns amount of bytes store in the cache.
 	Capacity() int
 	Stats() Stats
 	KeyMetadata(key string) Metadata
@@ -54,3 +56,14 @@ type Stats struct {
 	// Collisions is a number of happened key-collisions
 	Collisions int64 `json:"collisions"`
 }
+
+// bytes to bit
+const (
+	B = 1 << (10 * iota)
+	KB
+	MB
+	GB
+	TB
+	PB
+	EB
+)

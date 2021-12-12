@@ -37,6 +37,11 @@ func TestNew(t *testing.T) {
 	cacheEntry.GetJson("my_map", &m)
 
 	log.Println("m: ", m)
+
+	log.Println("length: ", cacheEntry.Len())
+	log.Println(cacheEntry.Capacity())
+
+	time.Sleep(10 * time.Second)
 }
 
 /*

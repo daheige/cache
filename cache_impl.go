@@ -32,6 +32,43 @@ type cacheImpl struct {
 	*bigcache.BigCache
 }
 
+// Set set key entry to cache
+func (c *cacheImpl) Set(key string, entry []byte) error {
+	return c.BigCache.Set(key, entry)
+}
+
+// Get get value from cache
+func (c *cacheImpl) Get(key string) ([]byte, error) {
+	return c.BigCache.Get(key)
+}
+
+// Delete delete key from cache
+func (c *cacheImpl) Delete(key string) error {
+	return c.BigCache.Delete(key)
+}
+
+// Len return cache length
+func (c *cacheImpl) Len() int {
+	return c.BigCache.Len()
+}
+
+// Capacity returns amount of bytes store in the cache.
+func (c *cacheImpl) Capacity() int {
+	return c.BigCache.Capacity()
+}
+
+// Reset clear all entries
+func (c *cacheImpl) Reset() error {
+	return c.BigCache.Reset()
+}
+
+// Close is used to signal a shutdown of the cache when you are done with it.
+// This allows the cleaning goroutines to exit and ensures references are not
+// kept to the cache preventing GC of the entire cache.
+func (c *cacheImpl) Close() error {
+	return c.BigCache.Close()
+}
+
 // Stats returns cache's statistics
 func (c *cacheImpl) Stats() Stats {
 	status := c.BigCache.Stats()
